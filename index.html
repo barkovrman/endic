@@ -27,6 +27,12 @@
 
 <button id="resetStorage">Сброс хранилища</button>
 
+<div>
+    <span id="totalWords">Всего слов: 0</span>
+    <span id="learnedWordsCount">Выучено: 0</span>
+    <span id="notLearnedWordsCount">Невыучено: 0</span>
+</div>
+
 <table id="dictionary">
     <thead>
     <tr>
@@ -69,10 +75,20 @@
         document.querySelectorAll('.column-example-translation').forEach(el => el.classList.toggle('hidden', !document.getElementById('toggleExampleTranslation').checked));
     }
 
-    // Функция для генерации таблицы
+    function updateCounts() {
+        const totalWords = dictionaryData.length;
+        const learnedWordsCount = Object.values(learnedWords).filter(v => v).length;
+        const notLearnedWordsCount = totalWords - learnedWordsCount;
+
+        document.getElementById('totalWords').textContent = `Всего слов: ${totalWords}`;
+        document.getElementById('learnedWordsCount').textContent = `Выучено: ${learnedWordsCount}`;
+        document.getElementById('notLearnedWordsCount').textContent = `Невыучено: ${notLearnedWordsCount}`;
+    }
+
     function renderTable() {
         tbody.innerHTML = '';
         dictionaryData.forEach(entry => {
+            if (!entry) return;
             const isLearned = learnedWords[entry[0]] || false;
             if (filterSelect.value === 'learned' && !isLearned) return;
             if (filterSelect.value === 'notLearned' && isLearned) return;
@@ -82,10 +98,10 @@
             // Картинка
             const imageCell = document.createElement('td');
             imageCell.classList.add('column-image');
-            const img = document.createElement('img');
+            /*const img = document.createElement('img');
             img.src = `pic/${entry[0]}.jpg`;
             img.alt = entry[0];
-            imageCell.appendChild(img);
+            imageCell.appendChild(img);*/
             row.appendChild(imageCell);
 
             // Действия (произношение)
@@ -162,6 +178,7 @@
             tbody.appendChild(row);
             updateColumnVisibility();
         });
+        updateCounts();
     }
 
     // Сортировка в случайном порядке
@@ -181,6 +198,7 @@
     document.getElementById('filter').addEventListener('change', e => {
         localStorage.setItem('filter', e.target.value);
         renderTable();
+        updateCounts();
     });
 
 
@@ -206,7 +224,10 @@
 
     // Инициализация таблицы
     dictionaryData = shuffleArray(dictionaryData);
-    renderTable();
+    if (dictionaryData) {
+        renderTable();
+        updateCounts();
+    }
 </script>
 </body>
 </html>

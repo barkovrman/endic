@@ -1,28 +1,8 @@
 let dictionaryData = [
-    [
-        "ability",
-        "способность",
-        "Her ability to solve problems quickly is impressive.",
-        "Её способность быстро решать проблемы впечатляет."
-    ],
-    [
-        "able",
-        "способный",
-        "He is able to lift heavy weights without any difficulty.",
-        "Он способен поднимать тяжёлые веса без каких-либо затруднений."
-    ],
-    [
-        "accept",
-        "принимать",
-        "They decided to accept the invitation to the wedding.",
-        "Они решили принять приглашение на свадьбу."
-    ],
-    [
-        "accident",
-        "несчастный случай",
-        "The car accident caused a major traffic jam.",
-        "Дорожное происшествие вызвало серьёзную пробку."
-    ],
+    ["ability", "способность", "Her ability to solve problems quickly is impressive.", "Её способность быстро решать проблемы впечатляет."],
+    ["able", "способный", "He is able to lift heavy weights without any difficulty.", "Он способен поднимать тяжёлые веса без каких-либо затруднений."],
+    ["accept", "принимать", "They decided to accept the invitation to the wedding.", "Они решили принять приглашение на свадьбу."],
+    ["accident", "несчастный случай", "The car accident caused a major traffic jam.", "Дорожное происшествие вызвало серьёзную пробку."],
     ["abroad", "за границей", "She plans to study abroad next year.", "Она планирует учиться за границей в следующем году."],
     ["achieve", "достигать", "He worked hard to achieve his goals.", "Он много работал, чтобы достичь своих целей."],
     ["advantage", "преимущество", "Being bilingual is a great advantage in today's world.", "Быть билингвом — это большое преимущество в современном мире."],
@@ -102,6 +82,4 @@ let dictionaryData = [
     ["bone", "кость", "The X-ray showed a broken bone in his arm.", "Рентген показал сломанную кость в его руке."],
     ["book", "книга", "She borrowed a book from the library.", "Она взяла книгу в библиотеке."],
     ["borrow", "брать взаймы", "Can I borrow your pen for a moment?", "Можно я возьму твою ручку на минуту?"]
-
-
 ];
