@@ -147,7 +147,7 @@ function shuffleArray(array) {
 function speak(text, lang) {
     const msg = new SpeechSynthesisUtterance(text);
     msg.lang = lang;
-    msg.rate = 0.5;
+    msg.rate = lang === 'en-US' ? 0.5 : (lang === 'ru-RU' ? 1.5 : msg.rate);
     window.speechSynthesis.speak(msg);
 }
 
