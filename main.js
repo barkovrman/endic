@@ -132,12 +132,16 @@ function renderTable() {
 
 function setLearnedCheckboxListeners() {
     document.querySelectorAll('input[type="checkbox"]').forEach(learnedCheckbox => {
-        learnedCheckbox.onchange = () => {
-            learnedWords[learnedCheckbox.closest('tr').children[2].textContent] = learnedCheckbox.checked;
-            localStorage.setItem('learnedWords', JSON.stringify(learnedWords));
-            const row = learnedCheckbox.closest('tr');
-            row.classList.add('hidden');
-            updateCounts();
+        // Attach the change event listener directly when creating the checkbox
+        learnedCheckbox.onchange = function() {
+            const parentRow = this.closest('tr');
+            if (parentRow) {
+                const word = parentRow.children[2].textContent;
+                learnedWords[word] = this.checked;
+                localStorage.setItem('learnedWords', JSON.stringify(learnedWords));
+                parentRow.classList.add('hidden');
+                updateCounts();
+            }
         };
     })
 }
