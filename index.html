@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Словарик</title>
@@ -9,7 +9,15 @@
 <body>
 <h1>Словарик</h1>
 
-<div id="controls"></div>
+<div id="controls">
+    <button id="prevRowBtn" onclick="prevRow()">Prev</button>
+    <button id="nextRowBtn" onclick="nextRow()">Next</button>
+    <button id="playEnBtn" onclick="playEn()">En</button>
+    <button id="playRuBtn" onclick="playRu()">Ru</button>
+    <button id="playExEnBtn" onclick="playExEn()">ExEn</button>
+    <button id="playExRuBtn" onclick="playExRu()">ExRu</button>
+    <button id="playAllBtn" onclick="playAll()">All</button>
+</div>
 
 <!-- Фильтры -->
 <div>

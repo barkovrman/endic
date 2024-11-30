@@ -1,4 +1,3 @@
-const controlsDiv = document.getElementById('controls');
 const tbody = document.querySelector('#dictionary tbody');
 const filterSelect = document.getElementById('filter');
 const learnedWords = JSON.parse(localStorage.getItem('learnedWords') || '{}');
@@ -253,18 +252,6 @@ document.getElementById('resetStorage').addEventListener('click', () => {
         updateColumnVisibility();
     });
 });
-
-// Инициализация таблицы
-controlsDiv.innerHTML = `
-    <button onclick="prevRow()">Prev</button>
-    <button onclick="nextRow()">Next</button>
-    <button onclick="playEn()">En</button>
-    <button onclick="playRu()">Ru</button>
-    <button onclick="playExEn()">ExEn</button>
-    <button onclick="playExRu()">ExRu</button>
-    <button onclick="playAll()">All</button>
-`;
-
 
 dictionaryData = shuffleArray(dictionaryData);
 
