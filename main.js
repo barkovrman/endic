@@ -253,6 +253,33 @@ document.getElementById('resetStorage').addEventListener('click', () => {
     });
 });
 
+
+document.addEventListener('keydown', (event) => {
+    switch (event.key.toLowerCase()) {
+        case 'backspace':
+            document.getElementById('prevRowBtn').click();
+            break;
+        case 'enter':
+            document.getElementById('nextRowBtn').click();
+            break;
+        case 'e':
+            document.getElementById('playEnBtn').click();
+            break;
+        case 'r':
+            document.getElementById('playRuBtn').click();
+            break;
+        case 't':
+            document.getElementById('playExEnBtn').click();
+            break;
+        case 'y':
+            document.getElementById('playExRuBtn').click();
+            break;
+        case 'a':
+            document.getElementById('playAllBtn').click();
+            break;
+    }
+});
+
 dictionaryData = shuffleArray(dictionaryData);
 
 if (dictionaryData) {
