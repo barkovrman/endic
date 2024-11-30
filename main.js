@@ -1,6 +1,8 @@
+const controlsDiv = document.getElementById('controls');
 const tbody = document.querySelector('#dictionary tbody');
 const filterSelect = document.getElementById('filter');
 const learnedWords = JSON.parse(localStorage.getItem('learnedWords') || '{}');
+let currentIndex = 0;
 const columnVisibility = JSON.parse(localStorage.getItem('columnVisibility') || '{}');
 
 // Восстановление состояния чекбоксов
@@ -34,7 +36,7 @@ function updateCounts() {
 
 function renderTable() {
     tbody.innerHTML = '';
-    dictionaryData.forEach(entry => {
+    dictionaryData.forEach((entry, index) => {
         if (!entry) return;
         const isLearned = learnedWords[entry[0]] || false;
         if (filterSelect.value === 'learned' && !isLearned) return;
@@ -113,17 +115,19 @@ function renderTable() {
         const learnedCheckbox = document.createElement('input');
         learnedCheckbox.type = 'checkbox';
         learnedCheckbox.checked = isLearned;
+        learnedCheckbox.classList.add('learned-checkbox');
 
         learnedCell.appendChild(learnedCheckbox);
         row.appendChild(learnedCell);
 
         tbody.appendChild(row);
         updateColumnVisibility();
-    });
-    setLearnedCheckboxListeners();
-    updateCounts();
+        tbody.appendChild(row);
+        row.setAttribute('data-index', index);
+        setLearnedCheckboxListeners();
+        updateCounts();
+    })
 }
-
 
 
 function setLearnedCheckboxListeners() {
@@ -136,19 +140,75 @@ function setLearnedCheckboxListeners() {
             updateCounts();
         };
     })
-};
+}
 
 // Сортировка в случайном порядке
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-// Произношение текста
+function prevRow() {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : 0;
+    highlightRow();
+}
+
+function nextRow() {
+    const rows = tbody.getElementsByTagName('tr');
+    currentIndex = (currentIndex < rows.length - 1) ? currentIndex + 1 : currentIndex;
+    highlightRow();
+}
+
+function playEn() {
+    const rows = tbody.getElementsByTagName('tr');
+    const word = rows[currentIndex].children[2].textContent;
+    speak(word, 'en-US');
+}
+
+function playRu() {
+    const rows = tbody.getElementsByTagName('tr');
+    const translation = rows[currentIndex].children[4].textContent;
+    speak(translation, 'ru-RU');
+}
+
+function playExEn() {
+    const rows = tbody.getElementsByTagName('tr');
+    const exampleEn = rows[currentIndex].children[3].textContent;
+    speak(exampleEn, 'en-US');
+}
+
+function playExRu() {
+    const rows = tbody.getElementsByTagName('tr');
+    const exampleRu = rows[currentIndex].children[5].textContent;
+    speak(exampleRu, 'ru-RU');
+}
+
+function playAll() {
+    playEn();
+    setTimeout(() => {
+        playRu();
+        setTimeout(() => {
+            playExEn();
+            setTimeout(() => {
+                playExRu();
+            }, 1000);
+        }, 1000);
+    }, 1000);
+}
+
 function speak(text, lang) {
     const msg = new SpeechSynthesisUtterance(text);
     msg.lang = lang;
+    msg.rate = 0.5;
     msg.rate = lang === 'en-US' ? 0.5 : (lang === 'ru-RU' ? 1.5 : msg.rate);
     window.speechSynthesis.speak(msg);
+}
+
+function highlightRow() {
+    const rows = tbody.getElementsByTagName('tr');
+    Array.from(rows).forEach(row => row.classList.remove('highlighted'));
+    if (rows[currentIndex]) {
+        rows[currentIndex].classList.add('highlighted');
+    }
 }
 
 // Сохранение состояния чекбоксов и фильтра
@@ -178,7 +238,17 @@ document.getElementById('resetStorage').addEventListener('click', () => {
 });
 
 // Инициализация таблицы
+controlsDiv.innerHTML = `
+    <button onclick="prevRow()">Prev</button>
+    <button onclick="nextRow()">Next</button>
+    <button onclick="playEn()">En</button>
+    <button onclick="playRu()">Ru</button>
+    <button onclick="playExEn()">ExEn</button>
+    <button onclick="playExRu()">ExRu</button>
+    <button onclick="playAll()">All</button>
+`;
 dictionaryData = shuffleArray(dictionaryData);
 if (dictionaryData) {
     renderTable();
+    highlightRow();
 }
