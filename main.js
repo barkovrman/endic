@@ -256,10 +256,10 @@ document.getElementById('resetStorage').addEventListener('click', () => {
 
 document.addEventListener('keydown', (event) => {
     switch (event.key.toLowerCase()) {
-        case 'backspace':
+        case 'd':
             document.getElementById('prevRowBtn').click();
             break;
-        case 'enter':
+        case 'f':
             document.getElementById('nextRowBtn').click();
             break;
         case 'e':
