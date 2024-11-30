@@ -20,3 +20,7 @@ img {
 tr:hover {
     background-color: #dadada;
 }
+
+.highlighted {
+    background-color: rgba(250, 237, 121, 0.45);
+}

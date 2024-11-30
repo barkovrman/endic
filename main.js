@@ -124,6 +124,19 @@ function renderTable() {
         updateColumnVisibility();
         tbody.appendChild(row);
         row.setAttribute('data-index', index);
+
+        row.addEventListener('click', () => {
+            // Remove the highlight from currently highlighted row
+            const rows = tbody.getElementsByTagName('tr');
+            Array.from(rows).forEach(r => r.classList.remove('highlighted'));
+
+            // Get the index of the clicked row relative to its parent table
+            currentIndex = row.rowIndex - 1; // Subtract 1 if tbody is not the top-level parent
+
+            // Highlight the newly selected row
+            row.classList.add('highlighted');
+        });
+
         setLearnedCheckboxListeners();
         updateCounts();
     })
@@ -251,7 +264,10 @@ controlsDiv.innerHTML = `
     <button onclick="playExRu()">ExRu</button>
     <button onclick="playAll()">All</button>
 `;
+
+
 dictionaryData = shuffleArray(dictionaryData);
+
 if (dictionaryData) {
     renderTable();
     highlightRow();
