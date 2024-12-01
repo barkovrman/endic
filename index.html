@@ -7,16 +7,16 @@
     <script type="application/javascript" src="data.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 <body>
-<h1>Словарик</h1>
-
+<div id="currentEnText" class="whiteColor"></div>
+<!--D F   E R   T Y   A-->
 <div id="controls">
-    <button id="prevRowBtn" onclick="prevRow()">Prev (D)</button>
-    <button id="nextRowBtn" onclick="nextRow()">Next (F)</button>
-    <button id="playEnBtn" onclick="playEn()">En (E)</button>
-    <button id="playRuBtn" onclick="playRu()">Ru (R)</button>
-    <button id="playExEnBtn" onclick="playExEn()">ExEn (T)</button>
-    <button id="playExRuBtn" onclick="playExRu()">ExRu (Y)</button>
-    <button id="playAllBtn" onclick="playAll()">All (A)</button>
+    <button id="prevRowBtn" onclick="prevRow()"><<</button>
+    <button id="nextRowBtn" onclick="nextRow()">>></button>
+    <button id="playEnBtn" onclick="playEn()">En</button>
+    <button id="playRuBtn" onclick="playRu()">Ru</button>
+    <button id="playExEnBtn" onclick="playExEn()">ExEn</button>
+    <button id="playExRuBtn" onclick="playExRu()">ExRu</button>
+    <button id="playAllBtn" onclick="playAll()">All</button>
 </div>
 
 <!-- Фильтры -->

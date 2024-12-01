@@ -163,14 +163,21 @@ function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
+
+function hideCurrentEnText(){
+    document.getElementById('currentEnText').classList.add('whiteColor');
+}
+
 function prevRow() {
     currentIndex = (currentIndex > 0) ? currentIndex - 1 : 0;
+    hideCurrentEnText();
     highlightRow();
 }
 
 function nextRow() {
     const rows = tbody.getElementsByTagName('tr');
     currentIndex = (currentIndex < rows.length - 1) ? currentIndex + 1 : currentIndex;
+    hideCurrentEnText()
     highlightRow();
 }
 
@@ -225,6 +232,8 @@ function highlightRow() {
     if (rows[currentIndex]) {
         rows[currentIndex].classList.add('highlighted');
     }
+    const currentEnglishWord = rows[currentIndex].children[2].textContent;
+    document.getElementById('currentEnText').textContent = currentEnglishWord;
 }
 
 // Сохранение состояния чекбоксов и фильтра
@@ -278,6 +287,11 @@ document.addEventListener('keydown', (event) => {
             document.getElementById('playAllBtn').click();
             break;
     }
+});
+
+
+document.getElementById('currentEnText').addEventListener('click', function () {
+    this.classList.toggle('whiteColor');
 });
 
 dictionaryData = shuffleArray(dictionaryData);
