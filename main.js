@@ -205,6 +205,22 @@ function playExRu() {
     speak(exampleRu, 'ru-RU');
 }
 
+function markCurrentWordAsLearned() {
+    const rows = tbody.getElementsByTagName('tr');
+    if (rows[currentIndex]) {
+        const row = rows[currentIndex];
+        const word = row.children[2].textContent; // Get the English word from the current row
+        if (!learnedWords[word]) {
+            learnedWords[word] = true; // Mark the word as learned
+            localStorage.setItem('learnedWords', JSON.stringify(learnedWords));
+            row.classList.add('hidden'); // Optionally hide the row
+            updateCounts(); // Update counts for learned / not learned words
+        } else {
+        }
+    } else {
+    }
+}
+
 function playAll() {
     playEn();
     setTimeout(() => {
