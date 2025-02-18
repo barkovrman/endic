@@ -218,8 +218,8 @@ function markCurrentWordAsLearned() {
                 localStorage.setItem('learnedWords', JSON.stringify(learnedWords));
                 row.classList.add('hidden'); // Optionally hide the row
                 updateCounts(); // Update counts for learned / not learned words
+                nextRow();
             }
-
     }
 }
 
