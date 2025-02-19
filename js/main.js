@@ -3,6 +3,7 @@ const filterSelect = document.getElementById('filter');
 const learnedWords = JSON.parse(localStorage.getItem('learnedWords') || '{}');
 let currentIndex = 0;
 const columnVisibility = JSON.parse(localStorage.getItem('columnVisibility') || '{}');
+const partSizeToShow = 20;
 
 // Восстановление состояния чекбоксов
 document.getElementById('toggleImage').checked = columnVisibility.toggleImage ?? true;
@@ -35,7 +36,35 @@ function updateCounts() {
 
 function renderTable() {
     tbody.innerHTML = '';
-    dictionaryData.forEach((entry, index) => {
+
+    let nextIndex = 0;
+    const lenDictionary = dictionaryData.length;
+
+    let showDictionaryData;
+
+    while (nextIndex < lenDictionary) {
+        // Get the next slice
+        showDictionaryData = dictionaryData.slice(nextIndex, nextIndex + partSizeToShow);
+
+        // Filter the slice for not-learned words
+        showDictionaryData = showDictionaryData.filter(entry => !learnedWords[entry[0]]);
+
+        // If we found any not-learned words, stop processing and use this slice
+        if (showDictionaryData.length > 0) break;
+
+        // Move to the next portion
+        nextIndex += partSizeToShow;
+    }
+
+
+    // Shuffle the results if there are words to show
+    if (showDictionaryData && showDictionaryData.length > 0) {
+        showDictionaryData = shuffleArray(showDictionaryData);
+    }
+
+
+    showDictionaryData
+        .forEach((entry, index) => {
         if (!entry) return;
         const isLearned = learnedWords[entry[0]] || false;
         if (filterSelect.value === 'learned' && !isLearned) return;
@@ -310,8 +339,6 @@ document.addEventListener('keydown', (event) => {
 document.getElementById('currentEnText').addEventListener('click', function () {
     this.classList.toggle('whiteColor');
 });
-
-dictionaryData = shuffleArray(dictionaryData);
 
 if (dictionaryData) {
     renderTable();
