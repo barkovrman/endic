@@ -4,13 +4,38 @@
     <meta charset="UTF-8">
     <title>Словарик</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script type="application/javascript" src="dictionary/A1.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentDictionary = urlParams.get('dic') || 'A1';
+        console.log(currentDictionary);
+        const scriptDic = document.createElement('script');
+        scriptDic.type = 'application/javascript';
+        scriptDic.src = `dictionary/${currentDictionary}.js`;
+        document.head.appendChild(scriptDic);
+    </script>
     <link rel="icon" type="image/x-icon" href="pic/favicon.ico">
 <body>
 <div id="currentEnText" class="whiteColor"></div>
+<div id="dictionariesUrls">
+    <a href="?dic=A1">A1</a>
+    <a href="?dic=A2">A2</a>
+    <a href="?dic=B1">B1</a>
+    <a href="?dic=B2">B2</a>
+    <a href="?dic=C1">C1</a>
+    <a href="?dic=C2">C2</a>
+</div>
+<script>
+    const links = document.querySelectorAll('#dictionariesUrls a');
+    links.forEach(link => {
+        if (link.href.includes(`?dic=${currentDictionary}`)) {
+            link.classList.add('current');
+        }
+    });
+</script>
+
 <!--D F   E R   T Y   A-->
 <div id="controls">
-	<div>D F   E R   T Y   A</div>
+    <div>D F E R T Y A</div>
     <button id="prevRowBtn" onclick="prevRow()"><<</button>
     <button id="nextRowBtn" onclick="nextRow()">>></button>
     <button id="playEnBtn" onclick="playEn()">En</button>

@@ -44,3 +44,12 @@ tr:hover {
     margin: 50px;
     font-size: 30pt;
 }
+
+#dictionariesUrls a {
+    font-size: 20pt;
+    margin-left: 10pt;
+}
+
+#dictionariesUrls a.current {
+    font-size: 40pt;
+}
