@@ -40,9 +40,11 @@ function renderTable() {
     let nextIndex = 0;
     const lenDictionary = dictionaryData.length;
 
-    let showDictionaryData;
+    let showDictionaryData = dictionaryData.filter(entry => !learnedWords[entry[0]]);
+    showDictionaryData = showDictionaryData.slice(0, partSizeToShow);
 
-    while (nextIndex < lenDictionary) {
+
+    /*while (nextIndex < lenDictionary) {
         // Get the next slice
         showDictionaryData = dictionaryData.slice(nextIndex, nextIndex + partSizeToShow);
 
@@ -54,7 +56,7 @@ function renderTable() {
 
         // Move to the next portion
         nextIndex += partSizeToShow;
-    }
+    }*/
 
 
     // Shuffle the results if there are words to show

@@ -58,6 +58,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="ukr pre2">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="ukr pre2 lk">
         <serverdata>
           <mappings>
@@ -87,6 +94,13 @@
         </serverdata>
       </paths>
       <paths name="uz pre2apicore">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="uz prod apicore">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

@@ -973,6 +973,5 @@ let dictionaryData = [
     ["wow", "вау", "Wow, this cake tastes amazing!", "Вау, этот торт на вкус потрясающий!"],
     ["yet", "ещё", "He hasn’t finished his homework yet.", "Он ещё не закончил свою домашнюю работу."],
     ["yours", "твой", "This book is yours, not mine.", "Эта книга твоя, а не моя."],
-    ["zero", "ноль", "The temperature dropped to zero degrees last night.", "Температура опустилась до нуля прошлой ночью."],
-
+    ["zero", "ноль", "The temperature dropped to zero degrees last night.", "Температура опустилась до нуля прошлой ночью."]
 ]
