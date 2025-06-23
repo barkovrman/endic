@@ -25,7 +25,10 @@
   #controls button {
     padding: 12px;
     margin: 5px;
-    font-size: 16px;
+    font-size: 50px;
+    width: 150px;
+    height: 150px;
+    float: left;
   }
 
   table {
