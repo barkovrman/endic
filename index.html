@@ -2,8 +2,16 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
     <title>Словарик</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/pwa.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Словарик">
+    <link rel="apple-touch-icon" href="pic/icon-192x192.png">
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const currentDictionary = urlParams.get('dic') || 'A1';
@@ -92,5 +100,6 @@
     script.src = 'js/main.js?v=' + new Date().getTime();
     document.head.appendChild(script);
 </script>
+<script src="js/pwa-init.js"></script>
 </body>
 </html>

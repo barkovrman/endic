@@ -1,0 +1,65 @@
+/* PWA specific styles */
+.add-to-home {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  #controls button {
+    padding: 12px;
+    margin: 5px;
+    font-size: 16px;
+  }
+
+  table {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  #dictionariesUrls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #dictionariesUrls a {
+    padding: 10px;
+    margin: 5px;
+  }
+}
+
+/* Offline indicator */
+.offline-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+  z-index: 10000;
+  display: none;
+}
+
+.offline .offline-indicator {
+  display: block;
+}
