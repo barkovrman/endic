@@ -6,6 +6,7 @@ const columnVisibility = JSON.parse(localStorage.getItem('columnVisibility') || 
 const partSizeToShow = 20;
 
 // Восстановление состояния чекбоксов
+document.getElementById('togglePartial').checked = columnVisibility.togglePartial ?? true;
 document.getElementById('toggleImage').checked = columnVisibility.toggleImage ?? true;
 document.getElementById('toggleActions').checked = columnVisibility.toggleActions ?? true;
 document.getElementById('toggleWord').checked = columnVisibility.toggleWord ?? true;
@@ -41,7 +42,9 @@ function renderTable() {
     const lenDictionary = dictionaryData.length;
 
     let showDictionaryData = dictionaryData.filter(entry => !learnedWords[entry[0]]);
-    showDictionaryData = showDictionaryData.slice(0, partSizeToShow);
+    if (document.getElementById('togglePartial').checked) {
+        showDictionaryData = showDictionaryData.slice(0, partSizeToShow);
+    }
 
 
     /*while (nextIndex < lenDictionary) {
@@ -308,6 +311,13 @@ document.getElementById('resetStorage').addEventListener('click', () => {
         localStorage.setItem('columnVisibility', JSON.stringify(columnVisibility));
         updateColumnVisibility();
     });
+});
+
+// Обработка изменения состояния чекбокса 'partial'
+document.getElementById('togglePartial').addEventListener('change', e => {
+    columnVisibility['togglePartial'] = e.target.checked;
+    localStorage.setItem('columnVisibility', JSON.stringify(columnVisibility));
+    renderTable(); // Re-render the table when the partial checkbox changes
 });
 
 
