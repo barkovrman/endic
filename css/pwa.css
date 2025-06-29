@@ -27,7 +27,7 @@
     margin: 5px;
     font-size: 50px;
     width: 150px;
-    height: 150px;
+    height: 80px;
     float: left;
   }
 
@@ -45,7 +45,18 @@
   #dictionariesUrls a {
     padding: 10px;
     margin: 5px;
+    font-size: 16px;
   }
+
+  #dictionariesUrls a.current {
+    font-size: 21px;
+    font-weight: bold;
+  }
+
+  #currentEnText {
+    font-size: 20px;
+  }
+
 }
 
 /* Offline indicator */

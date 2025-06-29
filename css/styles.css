@@ -53,3 +53,9 @@ tr:hover {
 #dictionariesUrls a.current {
     font-size: 40pt;
 }
+
+#currentData{
+    border: 1px solid #b8b6b6;
+    background-color: #ffffff;
+    height: 100px;
+}

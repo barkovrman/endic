@@ -4,6 +4,7 @@ const learnedWords = JSON.parse(localStorage.getItem('learnedWords') || '{}');
 let currentIndex = 0;
 const columnVisibility = JSON.parse(localStorage.getItem('columnVisibility') || '{}');
 const partSizeToShow = 20;
+const currentDataElement = document.getElementById('currentData');
 
 // Восстановление состояния чекбоксов
 document.getElementById('togglePartial').checked = columnVisibility.togglePartial ?? true;
@@ -198,21 +199,31 @@ function shuffleArray(array) {
 }
 
 
-function hideCurrentEnText(){
-    document.getElementById('currentEnText').classList.add('whiteColor');
+function hideCurrentData(){
+    console.log('hideCurrentData');
+    currentDataElement.classList.add('whiteColor');
+}
+
+function showCurrentData(){
+    console.log('showCurrentData');
+    currentDataElement.classList.remove('whiteColor');
+}
+
+
+function whenChangeRow(){
+    hideCurrentData();
+    highlightRow();
 }
 
 function prevRow() {
     currentIndex = (currentIndex > 0) ? currentIndex - 1 : 0;
-    hideCurrentEnText();
-    highlightRow();
+    whenChangeRow();
 }
 
 function nextRow() {
     const rows = tbody.getElementsByTagName('tr');
     currentIndex = (currentIndex < rows.length - 1) ? currentIndex + 1 : currentIndex;
-    hideCurrentEnText()
-    highlightRow();
+    whenChangeRow();
 }
 
 function playEn() {
@@ -285,6 +296,9 @@ function highlightRow() {
     }
     const currentEnglishWord = rows[currentIndex].children[2].textContent;
     document.getElementById('currentEnText').textContent = currentEnglishWord;
+    document.getElementById('currentRuText').textContent = rows[currentIndex].children[4].textContent;
+    document.getElementById('currentExEnText').textContent = rows[currentIndex].children[3].textContent;
+    document.getElementById('currentExRuText').textContent = rows[currentIndex].children[5].textContent;
 }
 
 // Сохранение состояния чекбоксов и фильтра
@@ -348,11 +362,11 @@ document.addEventListener('keydown', (event) => {
 });
 
 
-document.getElementById('currentEnText').addEventListener('click', function () {
-    this.classList.toggle('whiteColor');
+document.getElementById('currentData').addEventListener('click', function () {
+    showCurrentData();
 });
 
 if (dictionaryData) {
     renderTable();
-    highlightRow();
+    whenChangeRow();
 }

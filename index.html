@@ -24,7 +24,14 @@
     <link rel="icon" type="image/x-icon" href="pic/favicon.ico">
 <body>
 
-<div id="currentEnText" class="whiteColor"></div>
+<div id="currentData">
+    <div id="currentEnText"></div>
+    <div id="currentRuText"></div>
+    <div id="currentExEnText"></div>
+    <div id="currentExRuText"></div>
+</div>
+
+
 
 <div id="dictionariesUrls">
     <a href="?dic=A1">A1</a>
@@ -46,7 +53,7 @@
 
 <!--D F   E R   T Y   A-->
 <div id="controls">
-    <div>D F E R T Y A</div>
+    <div><span>D F E R T Y A</span><span><label><input type="checkbox" id="togglePartial" checked> Partial</label></span></div>
     <button id="prevRowBtn" onclick="prevRow()"><<</button>
     <button id="nextRowBtn" onclick="nextRow()">>></button>
     <button id="playEnBtn" onclick="playEn()">En</button>
@@ -59,7 +66,7 @@
 
 <!-- Фильтры -->
 <div>
-    <label><input type="checkbox" id="togglePartial" checked> Partial</label>
+
     <label><input type="checkbox" id="toggleImage" checked> Картинка</label>
     <label><input type="checkbox" id="toggleActions" checked> Действия (произношение)</label>
     <label><input type="checkbox" id="toggleWord" checked> Англ слово</label>
