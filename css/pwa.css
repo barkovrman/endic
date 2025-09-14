@@ -25,10 +25,8 @@
   #controls button {
     padding: 12px;
     margin: 5px;
-    font-size: 50px;
-    width: 150px;
-    height: 80px;
-    float: left;
+    font-size: 35px;
+    height: 77px;
   }
 
   table {
@@ -49,8 +47,12 @@
   }
 
   #dictionariesUrls a.current {
-    font-size: 21px;
+    font-size: 25px;
     font-weight: bold;
+    text-decoration: none;
+    color: black;
+    border: 2px solid black;
+    border-radius: 5px;
   }
 
   #currentEnText {

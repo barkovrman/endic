@@ -24,23 +24,108 @@
     <link rel="icon" type="image/x-icon" href="pic/favicon.ico">
 <body>
 
-<div id="currentData">
-    <div id="currentEnText"></div>
-    <div id="currentRuText"></div>
-    <div id="currentExEnText"></div>
-    <div id="currentExRuText"></div>
+
+<div id="content" style="width: 350px">
+    <div id="dictionariesUrls">
+        <a href="?dic=A1">A1</a>
+        <a href="?dic=A2">A2</a>
+        <a href="?dic=B1">B1</a>
+        <a href="?dic=B2">B2</a>
+        <a href="?dic=C1">C1</a>
+        <a href="?dic=C2">C2</a>
+    </div>
+
+
+    <div id="currentData">
+        <div id="currentEnText"></div>
+        <div id="currentRuText"></div>
+        <div id="currentExEnText"></div>
+        <div id="currentExRuText"></div>
+    </div>
+
+
+
+
+
+    <!--D F   E R   T Y   A-->
+    <div id="controls" style="height: 420px">
+
+        <div style="float: left; width: 80px; height: 100%;padding-right: 8px;">
+<!--            <button id="prevRowBtn" onclick="prevRow()"><<</button>-->
+            <button id="markLearnedBtn" style="height: 100%; background-color: #b7f6a1"
+                    onclick="markCurrentWordAsLearned()">✔</button>
+        </div>
+
+        <div style="float: left; width: 170px;">
+            <button id="playEnBtn" onclick="playEn()" style="background-color: #b5d3f3">★</button>
+            <button id="playExEnBtn" onclick="playExEn()" style="background-color: #b5d3f3">★★</button>
+            <button id="playRuBtn" onclick="playRu()">☺</button>
+            <button id="playExRuBtn" onclick="playExRu()">☺☺</button>
+            <button id="playAllBtn" onclick="playAll()" style="background-color: #cdc7ef">★☺</button>
+        </div>
+
+        <div style="float: right; width: 80px; height: 100%;padding-left: 8px;">
+            <button id="nextRowBtn" style="height: 100%; background-color: #dddddd" onclick="nextRow()">>></button>
+        </div>
+
+<!--        -->
+
+
+
+
+
+
+
+    </div>
+
+    <div style="margin-top: 20px">
+        Всего слов: <span id="totalWordsCount">0</span>
+        Выучено: <span id="learnedWordsCountSpan">0</span>
+        Не выучено: <span id="notLearnedWordsCountSpan">0</span>
+    </div>
+
+    <div style="margin-top: 20px">
+        <span><label><input type="checkbox" id="togglePartial" checked> Partial (by 20 words) </label></span>
+    </div>
+
+    <div style="margin-top: 20px">
+        <button id="resetStorage">Сброс хранилища</button>
+    </div>
+
+
+    <div id="all-words-list"  style="display: block; margin-top: 20px">
+        <!-- Фильтры для таблицы -->
+        <div>
+            <label><input type="checkbox" id="toggleImage"> Картинка</label>
+            <label><input type="checkbox" id="toggleActions"> Действия (произношение)</label>
+            <label><input type="checkbox" id="toggleWord" checked> Англ слово</label>
+            <label><input type="checkbox" id="toggleExample"> Пример на англ</label>
+            <label><input type="checkbox" id="toggleTranslation"> Рус слово</label>
+            <label><input type="checkbox" id="toggleExampleTranslation"> Пример на русском</label>
+        </div>
+        <table id="dictionary">
+            <thead>
+            <tr>
+                <th class="column-image">Картинка</th>
+                <th class="column-actions">Действия (произношение)</th>
+                <th class="column-word">Англ слово</th>
+                <th class="column-example">Пример на англ</th>
+                <th class="column-translation">Рус слово</th>
+                <th class="column-example-translation">Пример на русском</th>
+                <th>Напомнить</th>
+                <th>Выучено</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+
+
+
 </div>
 
 
-
-<div id="dictionariesUrls">
-    <a href="?dic=A1">A1</a>
-    <a href="?dic=A2">A2</a>
-    <a href="?dic=B1">B1</a>
-    <a href="?dic=B2">B2</a>
-    <a href="?dic=C1">C1</a>
-    <a href="?dic=C2">C2</a>
-</div>
 
 <script>
     const links = document.querySelectorAll('#dictionariesUrls a');
@@ -50,60 +135,6 @@
         }
     });
 </script>
-
-<!--D F   E R   T Y   A-->
-<div id="controls">
-    <div><span>D F E R T Y A</span><span><label><input type="checkbox" id="togglePartial" checked> Partial</label></span></div>
-    <button id="prevRowBtn" onclick="prevRow()"><<</button>
-    <button id="nextRowBtn" onclick="nextRow()">>></button>
-    <button id="playEnBtn" onclick="playEn()">En</button>
-    <button id="playRuBtn" onclick="playRu()">Ru</button>
-    <button id="playExEnBtn" onclick="playExEn()">ExEn</button>
-    <button id="playExRuBtn" onclick="playExRu()">ExRu</button>
-    <button id="playAllBtn" onclick="playAll()">All</button>
-    <button id="markLearnedBtn" onclick="markCurrentWordAsLearned()">V</button>
-</div>
-
-<!-- Фильтры -->
-<div>
-
-    <label><input type="checkbox" id="toggleImage" checked> Картинка</label>
-    <label><input type="checkbox" id="toggleActions" checked> Действия (произношение)</label>
-    <label><input type="checkbox" id="toggleWord" checked> Англ слово</label>
-    <label><input type="checkbox" id="toggleExample" checked> Пример на англ</label>
-    <label><input type="checkbox" id="toggleTranslation" checked> Рус слово</label>
-    <label><input type="checkbox" id="toggleExampleTranslation" checked> Пример на русском</label>
-</div>
-
-<label for="filter"></label><select id="filter">
-    <option value="all">Все слова</option>
-    <option value="learned">Выученные</option>
-    <option value="notLearned">Невыученные</option>
-</select>
-
-<button id="resetStorage">Сброс хранилища</button>
-
-<div>
-    Всего слов: <span id="totalWordsCount">0</span>
-    Выучено: <span id="learnedWordsCountSpan">0</span>
-    Не выучено: <span id="notLearnedWordsCountSpan">0</span>
-</div>
-
-<table id="dictionary">
-    <thead>
-    <tr>
-        <th class="column-image">Картинка</th>
-        <th class="column-actions">Действия (произношение)</th>
-        <th class="column-word">Англ слово</th>
-        <th class="column-example">Пример на англ</th>
-        <th class="column-translation">Рус слово</th>
-        <th class="column-example-translation">Пример на русском</th>
-        <th>Напомнить</th>
-        <th>Выучено</th>
-    </tr>
-    </thead>
-    <tbody></tbody>
-</table>
 
 <script>
     const script = document.createElement('script');

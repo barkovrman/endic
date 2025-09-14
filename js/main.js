@@ -1,5 +1,4 @@
 const tbody = document.querySelector('#dictionary tbody');
-const filterSelect = document.getElementById('filter');
 const learnedWords = JSON.parse(localStorage.getItem('learnedWords') || '{}');
 let currentIndex = 0;
 const columnVisibility = JSON.parse(localStorage.getItem('columnVisibility') || '{}');
@@ -14,7 +13,6 @@ document.getElementById('toggleWord').checked = columnVisibility.toggleWord ?? t
 document.getElementById('toggleExample').checked = columnVisibility.toggleExample ?? true;
 document.getElementById('toggleTranslation').checked = columnVisibility.toggleTranslation ?? true;
 document.getElementById('toggleExampleTranslation').checked = columnVisibility.toggleExampleTranslation ?? true;
-filterSelect.value = localStorage.getItem('filter') || 'all';
 
 // Функция для управления видимостью колонок
 function updateColumnVisibility() {
@@ -73,8 +71,7 @@ function renderTable() {
         .forEach((entry, index) => {
         if (!entry) return;
         const isLearned = learnedWords[entry[0]] || false;
-        if (filterSelect.value === 'learned' && !isLearned) return;
-        if (filterSelect.value === 'notLearned' && isLearned) return;
+        if (isLearned) return;
 
         const row = document.createElement('tr');
 
@@ -300,12 +297,6 @@ function highlightRow() {
     document.getElementById('currentExEnText').textContent = rows[currentIndex].children[3].textContent;
     document.getElementById('currentExRuText').textContent = rows[currentIndex].children[5].textContent;
 }
-
-// Сохранение состояния чекбоксов и фильтра
-document.getElementById('filter').addEventListener('change', e => {
-    localStorage.setItem('filter', e.target.value);
-    renderTable();
-});
 
 
 // Сброс хранилища
