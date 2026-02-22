@@ -5,8 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
     <title>Словарик</title>
-    <link rel="stylesheet" href='css/styles.css?v=' + new Date().getTime()>
-    <link rel="stylesheet" href='css/pwa.css?v=' + new Date().getTime()>
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Словарик">
@@ -23,7 +21,7 @@
     <link rel="icon" type="image/x-icon" href="pic/favicon.ico">
 <body>
 
-
+v3
 <div id="content" style="width: 350px">
     <div id="dictionariesUrls">
         <a href="?dic=A1">A1</a>
@@ -137,15 +135,51 @@
     });
 </script>
 
+
+
 <script>
-    const script = document.createElement('script');
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'css/styles.css?v=' + new Date().getTime();
+    document.head.appendChild(link);
+</script>
+
+<script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'css/pwa.css?v=' + new Date().getTime();
+    document.head.appendChild(link);
+</script>
+
+
+<script>
+    var script = document.createElement('script');
     script.type = 'application/javascript';
     script.src = 'js/main.js?v=' + new Date().getTime();
     document.head.appendChild(script);
 </script>
-<script src='js/pwa-init.js?v=' + new Date().getTime()></script>
 
-<script src='js/oneClickControl.js?v=' + new Date().getTime()></script>
-<script src='js/tiktokdevice.js?v=' + new Date().getTime()></script>
+
+<script>
+    var script = document.createElement('script');
+    script.type = 'application/javascript';
+    script.src = 'js/pwa-init.js?v=' + new Date().getTime();
+    document.head.appendChild(script);
+</script>
+
+<script>
+    var script = document.createElement('script');
+    script.type = 'application/javascript';
+    script.src = 'js/oneClickControl.js?v=' + new Date().getTime();
+    document.head.appendChild(script);
+</script>
+
+<script>
+    var script = document.createElement('script');
+    script.type = 'application/javascript';
+    script.src = 'js/tiktokdevice.js?v=' + new Date().getTime();
+    document.head.appendChild(script);
+</script>
+
 </body>
 </html>

@@ -6,6 +6,9 @@
     height: 130pt;
     margin: 0 auto;
     text-align: center;
+    display: grid;
+    place-items: center;     /* Центрирует и по горизонтали и по вертикали */
+    min-height: 100px;
 }
 
 table {
